@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    public float speed;
+
+    float X;
+    float Z;
+
+    Vector3 Move;
+
+    public CharacterController Cont;
+
+    // Update is called once per frame
+    void Update()
+    {
+        X = Input.GetAxis("Horizontal");
+        Z = Input.GetAxis("Vertical");
+
+        Move = transform.right * X + transform.forward * Z;
+        Cont.Move(Move * speed * Time.deltaTime);
+    }
+}
