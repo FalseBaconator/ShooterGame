@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
+    public float gravity;
 
     float X;
     float Z;
 
     Vector3 Move;
+    Vector3 Vel;
 
     public CharacterController Cont;
 
@@ -21,5 +23,9 @@ public class PlayerController : MonoBehaviour
 
         Move = transform.right * X + transform.forward * Z;
         Cont.Move(Move * speed * Time.deltaTime);
+
+        Vel.y += gravity * Time.deltaTime;
+        Cont.Move(Vel * Time.deltaTime);
+
     }
 }
