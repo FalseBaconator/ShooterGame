@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public CharacterController Cont;
     public Transform groundCheck;
     public float groundDist;
-    LayerMask groundMask;
+    public LayerMask groundMask;
 
     bool isGrounded;
 
