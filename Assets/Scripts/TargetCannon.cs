@@ -21,7 +21,6 @@ public class TargetCannon : MonoBehaviour
     void Update()
     {
         timer = timer - Time.deltaTime;
-        Debug.Log(timer.ToString());
         if (timer <= 0)
         {
             timer = Random.Range(timeMin, timeMax);
