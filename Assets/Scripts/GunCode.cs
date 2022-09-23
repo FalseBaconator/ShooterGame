@@ -32,15 +32,12 @@ public class GunCode : MonoBehaviour
 
     void Shoot()
     {
-        Debug.Log("shoot");
 
         RaycastHit hit;
         if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range, targetMask))
         {
-            Debug.Log("Hit");
             score = score + 1;
             scoreText.text = "SCORE: " + score.ToString();
-            Debug.Log(score.ToString());
             hit.transform.gameObject.SetActive(false);
         }
     }
