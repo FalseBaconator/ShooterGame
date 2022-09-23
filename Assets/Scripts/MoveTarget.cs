@@ -16,6 +16,6 @@ public class MoveTarget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.Translate(0, 0, speed * Time.deltaTime);
+        gameObject.transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
 }
