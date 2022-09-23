@@ -38,7 +38,7 @@ public class GunCode : MonoBehaviour
         {
             score = score + 1;
             scoreText.text = "SCORE: " + score.ToString();
-            hit.transform.gameObject.SetActive(false);
+            Destroy(hit.transform.gameObject);
         }
     }
 
