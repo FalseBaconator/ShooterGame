@@ -43,6 +43,7 @@ public class GunCode : MonoBehaviour
 
     void Reload()
     {
+        anim.SetTrigger("Reload");
         ammo = fullAmmo;
         ammoText.text = "AMMO: " + ammo.ToString();
     }
