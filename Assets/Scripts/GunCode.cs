@@ -7,21 +7,23 @@ public class GunCode : MonoBehaviour
 {
     public float DMG;
     public float range;
-    public int FullAmmo;
-    public int Ammo;
+    public int fullAmmo;
+    public int ammo;
 
     public Camera cam;
     public LayerMask targetMask;
 
     int score;
     public TextMeshProUGUI scoreText;
+    Animator anim;
 
 
     private void Start()
     {
         score = 0;
         scoreText.text = "SCORE: " + score.ToString();
-        Ammo = FullAmmo;
+        ammo = fullAmmo;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -39,14 +41,15 @@ public class GunCode : MonoBehaviour
 
     void Reload()
     {
-        Ammo = FullAmmo;
+        ammo = fullAmmo;
     }
 
     void Shoot()
     {
-        if (Ammo > 0)
+        if (ammo > 0)
         {
-            Ammo = Ammo - 1;
+            anim.SetTrigger("Fire");
+            ammo = ammo - 1;
             RaycastHit hit;
             if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range, targetMask))
             {

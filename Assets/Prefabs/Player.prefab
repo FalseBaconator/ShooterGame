@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8778173323635390065}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.005, z: 0}
+  m_LocalPosition: {x: 0, y: 0.11899995, z: 0.102}
   m_LocalScale: {x: 0.142675, y: 0.05707, z: 0.142675}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -125,7 +125,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8778173323891278541}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.02, z: 0.175}
+  m_LocalPosition: {x: 0, y: 0.144, z: 0.277}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -430,7 +430,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8778173324875218935}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.12399995, z: 0.102}
   m_LocalScale: {x: 0.1, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -527,7 +527,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8778173324882151758}
   m_LocalRotation: {x: 0.22987992, y: 0, z: 0, w: 0.97321904}
-  m_LocalPosition: {x: 0, y: -0.108, z: -0.076}
+  m_LocalPosition: {x: 0, y: 0.006, z: 0.026}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -608,6 +608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8778173325258817953}
   - component: {fileID: 8778173325258817952}
+  - component: {fileID: 746280759}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -622,8 +623,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8778173325258817958}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.752, y: -0.30999994, z: 1.01}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8, y: -0.4, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -648,13 +649,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DMG: 1
   range: 100
-  FullAmmo: 0
-  Ammo: 0
+  fullAmmo: 6
+  ammo: 0
   cam: {fileID: 8778173324871697238}
   targetMask:
     serializedVersion: 2
     m_Bits: 64
   scoreText: {fileID: 0}
+--- !u!95 &746280759
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8778173325258817958}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 89b0feafb0d793d4e9cca35c21858aad, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8778173325310325006
 GameObject:
   m_ObjectHideFlags: 0
