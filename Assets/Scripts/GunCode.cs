@@ -7,6 +7,8 @@ public class GunCode : MonoBehaviour
 {
     public float DMG;
     public float range;
+    public int FullAmmo;
+    public int Ammo;
 
     public Camera cam;
     public LayerMask targetMask;
@@ -19,6 +21,7 @@ public class GunCode : MonoBehaviour
     {
         score = 0;
         scoreText.text = "SCORE: " + score.ToString();
+        Ammo = FullAmmo;
     }
 
     // Update is called once per frame
@@ -28,18 +31,32 @@ public class GunCode : MonoBehaviour
         {
             Shoot();
         }
+        if (Input.GetButtonDown("Fire2"))
+        {
+            Reload();
+        }
+    }
+
+    void Reload()
+    {
+        Ammo = FullAmmo;
     }
 
     void Shoot()
     {
-
-        RaycastHit hit;
-        if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range, targetMask))
+        if (Ammo > 0)
         {
-            score = score + 1;
-            scoreText.text = "SCORE: " + score.ToString();
-            Destroy(hit.transform.gameObject);
+            Ammo = Ammo - 1;
+            RaycastHit hit;
+            if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range, targetMask))
+            {
+                score = score + 1;
+                scoreText.text = "SCORE: " + score.ToString();
+                Destroy(hit.transform.gameObject);
+            }
+
         }
+        
     }
 
 }
