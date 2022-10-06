@@ -648,10 +648,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DMG: 1
   range: 100
+  FullAmmo: 0
+  Ammo: 0
   cam: {fileID: 8778173324871697238}
   targetMask:
     serializedVersion: 2
     m_Bits: 64
+  scoreText: {fileID: 0}
 --- !u!1 &8778173325310325006
 GameObject:
   m_ObjectHideFlags: 0
