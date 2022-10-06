@@ -15,6 +15,7 @@ public class GunCode : MonoBehaviour
 
     int score;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI ammoText;
     Animator anim;
 
 
@@ -22,6 +23,7 @@ public class GunCode : MonoBehaviour
     {
         score = 0;
         scoreText.text = "SCORE: " + score.ToString();
+        ammoText.text = "AMMO: " + ammo.ToString();
         ammo = fullAmmo;
         anim = GetComponent<Animator>();
     }
@@ -42,6 +44,7 @@ public class GunCode : MonoBehaviour
     void Reload()
     {
         ammo = fullAmmo;
+        ammoText.text = "AMMO: " + ammo.ToString();
     }
 
     void Shoot()
@@ -50,6 +53,8 @@ public class GunCode : MonoBehaviour
         {
             anim.SetTrigger("Fire");
             ammo = ammo - 1;
+            ammoText.text = "AMMO: " + ammo.ToString();
+
             RaycastHit hit;
             if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range, targetMask))
             {
