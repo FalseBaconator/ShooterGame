@@ -673,6 +673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSense: 1000
   playerBody: {fileID: 8778173323928158052}
+  OptionSaverTag: OptionSaver
 --- !u!1 &8778173324875218935
 GameObject:
   m_ObjectHideFlags: 0
