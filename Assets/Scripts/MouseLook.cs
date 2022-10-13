@@ -18,7 +18,14 @@ public class MouseLook : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        mouseSenseGlobal = GameObject.FindGameObjectWithTag(OptionSaverTag).GetComponent<OptionsSaver>().mouseSensitivity;
+        if (GameObject.FindGameObjectWithTag(OptionSaverTag) != null)
+        {
+            mouseSenseGlobal = GameObject.FindGameObjectWithTag(OptionSaverTag).GetComponent<OptionsSaver>().mouseSensitivity;
+        }
+        else
+        {
+            mouseSenseGlobal = 1;
+        }
     }
 
     // Update is called once per frame
