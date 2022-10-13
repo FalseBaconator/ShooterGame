@@ -672,6 +672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSense: 1000
+  mouseSenseGlobal: 0
   playerBody: {fileID: 8778173323928158052}
   OptionSaverTag: OptionSaver
 --- !u!1 &8778173324875218935
@@ -921,7 +922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DMG: 1
-  range: 100
+  range: 1000
   fullAmmo: 6
   ammo: 0
   cam: {fileID: 8778173324871697238}
