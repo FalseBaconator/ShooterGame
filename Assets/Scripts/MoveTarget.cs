@@ -7,6 +7,12 @@ public class MoveTarget : MonoBehaviour
 
     public float speed;
 
+    private void Awake()
+    {
+        gameObject.transform.parent = null;
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Wall"))
