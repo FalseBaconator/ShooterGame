@@ -22,9 +22,9 @@ public class GunCode : MonoBehaviour
     private void Start()
     {
         score = 0;
+        ammo = fullAmmo;
         scoreText.text = "SCORE: " + score.ToString();
         ammoText.text = "AMMO: " + ammo.ToString();
-        ammo = fullAmmo;
         anim = GetComponent<Animator>();
     }
 
