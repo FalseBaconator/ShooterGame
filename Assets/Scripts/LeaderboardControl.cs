@@ -154,4 +154,19 @@ public class LeaderboardControl : MonoBehaviour
         nameInput.gameObject.SetActive(false);
     }
 
+    public void Reset()
+    {
+        PlayerPrefs.DeleteKey("Score1");
+        PlayerPrefs.DeleteKey("Score2");
+        PlayerPrefs.DeleteKey("Score3");
+        PlayerPrefs.DeleteKey("Score4");
+        PlayerPrefs.DeleteKey("Score5");
+
+        PlayerPrefs.DeleteKey("Holder1");
+        PlayerPrefs.DeleteKey("Holder2");
+        PlayerPrefs.DeleteKey("Holder3");
+        PlayerPrefs.DeleteKey("Holder4");
+        PlayerPrefs.DeleteKey("Holder5");
+    }
+
 }
