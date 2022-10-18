@@ -21,6 +21,11 @@ public class PlayerController : MonoBehaviour
 
     bool isGrounded;
 
+    private void Awake()
+    {
+        gameObject.transform.position = new Vector3(0, 1.1f, 0);
+    }
+
     // Update is called once per frame
     void Update()
     {

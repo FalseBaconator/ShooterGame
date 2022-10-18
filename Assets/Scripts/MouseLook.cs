@@ -15,7 +15,7 @@ public class MouseLook : MonoBehaviour
     public string OptionSaverTag;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
         if (GameObject.FindGameObjectWithTag(OptionSaverTag) != null)

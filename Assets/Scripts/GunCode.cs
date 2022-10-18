@@ -13,7 +13,7 @@ public class GunCode : MonoBehaviour
     public Camera cam;
     public LayerMask targetMask;
 
-    int score;
+    public int score;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI ammoText;
     Animator anim;

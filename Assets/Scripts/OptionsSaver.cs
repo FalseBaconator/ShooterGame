@@ -6,8 +6,16 @@ public class OptionsSaver : MonoBehaviour
 {
     public float mouseSensitivity;
 
+    private static GameObject existCheck;
+
     public void Awake()
     {
+        if (existCheck != null)
+        {
+            Destroy(existCheck);
+        }
+
+        existCheck = gameObject;
         DontDestroyOnLoad(gameObject);
         mouseSensitivity = 1;
     }

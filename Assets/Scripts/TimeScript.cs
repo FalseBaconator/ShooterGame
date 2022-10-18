@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TimeScript : MonoBehaviour
 {
@@ -9,9 +10,21 @@ public class TimeScript : MonoBehaviour
 
     public float maxTime;
     float timer;
+    public GameObject scoreHolder;
+    public int score;
 
-    private void Start()
+    private static GameObject existCheck;
+
+    private void Awake()
     {
+        if (existCheck != null)
+        {
+            Destroy(existCheck);
+        }
+
+        existCheck = gameObject;
+        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
         timer = maxTime;
     }
 
@@ -26,6 +39,8 @@ public class TimeScript : MonoBehaviour
         {
             timer = 0;
             timerText.text = timer.ToString("00");
+            score = scoreHolder.GetComponent<GunCode>().score;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }
