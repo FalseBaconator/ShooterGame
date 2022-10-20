@@ -33261,7 +33261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 2079311183}
   readySetText: {fileID: 370929949}
-  maxTime: 10
+  maxTime: 60
   readySetMax: 3
   notYet: 1
   scoreHolder: {fileID: 8778173325254897190}
