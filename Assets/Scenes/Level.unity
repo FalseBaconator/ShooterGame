@@ -41974,6 +41974,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1934342839}
     - target: {fileID: 8778173324871697232, guid: 5730106223cc8f64ab35445e20443154, type: 3}
+      propertyPath: mouseSense
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 8778173324871697232, guid: 5730106223cc8f64ab35445e20443154, type: 3}
       propertyPath: TimerController
       value: 
       objectReference: {fileID: 1934342839}
