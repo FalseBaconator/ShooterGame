@@ -14,6 +14,8 @@ public class MouseLook : MonoBehaviour
 
     public string OptionSaverTag;
 
+    public GameObject TimerController;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -31,14 +33,17 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        mouseX = Input.GetAxis("Mouse X") * mouseSense * mouseSenseGlobal * Time.deltaTime;
-        mouseY = Input.GetAxis("Mouse Y") * mouseSense * mouseSenseGlobal * Time.deltaTime;
+        if(TimerController.GetComponent<TimeScript>().notYet == false)
+        {
+            mouseX = Input.GetAxis("Mouse X") * mouseSense * mouseSenseGlobal * Time.deltaTime;
+            mouseY = Input.GetAxis("Mouse Y") * mouseSense * mouseSenseGlobal * Time.deltaTime;
 
-        xRot = xRot - mouseY;
-        xRot = Mathf.Clamp(xRot, -90, 90);
+            xRot = xRot - mouseY;
+            xRot = Mathf.Clamp(xRot, -90, 90);
 
 
-        transform.localRotation = Quaternion.Euler(xRot, 0, 0);
-        playerBody.Rotate(Vector3.up * mouseX);
+            transform.localRotation = Quaternion.Euler(xRot, 0, 0);
+            playerBody.Rotate(Vector3.up * mouseX);
+        }
     }
 }

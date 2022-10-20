@@ -110,6 +110,7 @@ public class LeaderboardControl : MonoBehaviour
 
         if(playerNameText != null)
         {
+            playerNameText.text = "ENTER NAME";
             menuButton.SetActive(false);
             nonScoringPlayerScore.SetActive(false);
             nameInput.gameObject.SetActive(true);
@@ -143,11 +144,11 @@ public class LeaderboardControl : MonoBehaviour
         PlayerPrefs.SetInt("Score4", heldScore4);
         PlayerPrefs.SetInt("Score5", heldScore5);
 
-        PlayerPrefs.SetString("Holder1", holder1);
-        PlayerPrefs.SetString("Holder2", holder2);
-        PlayerPrefs.SetString("Holder3", holder3);
-        PlayerPrefs.SetString("Holder4", holder4);
-        PlayerPrefs.SetString("Holder5", holder5);
+        PlayerPrefs.SetString("Holder1", holderText1.text);
+        PlayerPrefs.SetString("Holder2", holderText2.text);
+        PlayerPrefs.SetString("Holder3", holderText3.text);
+        PlayerPrefs.SetString("Holder4", holderText4.text);
+        PlayerPrefs.SetString("Holder5", holderText5.text);
 
         menuButton.SetActive(true);
         nonScoringPlayerScore.SetActive(true);
@@ -167,6 +168,30 @@ public class LeaderboardControl : MonoBehaviour
         PlayerPrefs.DeleteKey("Holder3");
         PlayerPrefs.DeleteKey("Holder4");
         PlayerPrefs.DeleteKey("Holder5");
+
+        heldScore1 = PlayerPrefs.GetInt("Score1", 0);
+        heldScore2 = PlayerPrefs.GetInt("Score2", 0);
+        heldScore3 = PlayerPrefs.GetInt("Score3", 0);
+        heldScore4 = PlayerPrefs.GetInt("Score4", 0);
+        heldScore5 = PlayerPrefs.GetInt("Score5", 0);
+
+        holder1 = PlayerPrefs.GetString("Holder1", " ");
+        holder2 = PlayerPrefs.GetString("Holder2", " ");
+        holder3 = PlayerPrefs.GetString("Holder3", " ");
+        holder4 = PlayerPrefs.GetString("Holder4", " ");
+        holder5 = PlayerPrefs.GetString("Holder5", " ");
+
+        holderText1.text = holder1;
+        holderText2.text = holder2;
+        holderText3.text = holder3;
+        holderText4.text = holder4;
+        holderText5.text = holder5;
+
+        heldScoreText1.text = heldScore1.ToString();
+        heldScoreText2.text = heldScore2.ToString();
+        heldScoreText3.text = heldScore3.ToString();
+        heldScoreText4.text = heldScore4.ToString();
+        heldScoreText5.text = heldScore5.ToString();
     }
 
 }

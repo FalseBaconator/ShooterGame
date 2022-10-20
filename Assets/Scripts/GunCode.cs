@@ -18,6 +18,8 @@ public class GunCode : MonoBehaviour
     public TextMeshProUGUI ammoText;
     Animator anim;
 
+    public GameObject TimerController;
+
 
     private void Start()
     {
@@ -31,13 +33,16 @@ public class GunCode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (TimerController.GetComponent<TimeScript>().notYet == false)
         {
-            Shoot();
-        }
-        if (Input.GetButtonDown("Fire2"))
-        {
-            Reload();
+            if (Input.GetButtonDown("Fire1"))
+            {
+                Shoot();
+            }
+            if (Input.GetButtonDown("Fire2"))
+            {
+                Reload();
+            }
         }
     }
 

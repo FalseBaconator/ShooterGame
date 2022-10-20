@@ -7,9 +7,13 @@ using UnityEngine.SceneManagement;
 public class TimeScript : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
+    public TextMeshProUGUI readySetText;
 
     public float maxTime;
     float timer;
+    public float readySetMax;
+    float readySetGo;
+    public bool notYet = true;
     public GameObject scoreHolder;
     public int score;
 
@@ -26,21 +30,38 @@ public class TimeScript : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(gameObject);
         timer = maxTime;
+        readySetGo = readySetMax;
+
+        timerText.text = timer.ToString("00");
+        readySetText.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(timer > 0)
+        if(notYet == false)
         {
-            timer -= Time.deltaTime;
-            timerText.text = timer.ToString("00");
-        }else if (timer < 0)
+            if(timer > 0)
+            {
+                timer -= Time.deltaTime;
+                timerText.text = timer.ToString("00");
+            }else if (timer < 0)
+            {
+                timer = 0;
+                timerText.text = timer.ToString("00");
+                score = scoreHolder.GetComponent<GunCode>().score;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+        }else if(readySetGo > 0)
         {
-            timer = 0;
-            timerText.text = timer.ToString("00");
-            score = scoreHolder.GetComponent<GunCode>().score;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            readySetGo -= Time.deltaTime;
+            readySetText.text = readySetGo.ToString("0");
+        }else
+        {
+            readySetGo = 0;
+            notYet = false;
+            readySetText.gameObject.SetActive(false);
         }
+
     }
 }

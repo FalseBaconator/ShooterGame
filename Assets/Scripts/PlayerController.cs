@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
 
     bool isGrounded;
 
+    public GameObject timerController;
+
     private void Awake()
     {
         gameObject.transform.position = new Vector3(0, 1.1f, 0);
@@ -29,27 +31,30 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDist, groundMask);
-
-        if(isGrounded && Vel.y < 0)
+        if (timerController.GetComponent<TimeScript>().notYet == false)
         {
-            Vel.y = -2f;
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundDist, groundMask);
+
+            if (isGrounded && Vel.y < 0)
+            {
+                Vel.y = -2f;
+            }
+
+            X = Input.GetAxis("Horizontal");
+            Z = Input.GetAxis("Vertical");
+
+            Move = transform.right * X + transform.forward * Z;
+            Cont.Move(Move * speed * Time.deltaTime);
+
+            if (Input.GetButtonDown("Jump") && isGrounded)
+            {
+                Vel.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            }
+
+
+            Vel.y += gravity * Time.deltaTime;
+            Cont.Move(Vel * Time.deltaTime);
         }
-
-        X = Input.GetAxis("Horizontal");
-        Z = Input.GetAxis("Vertical");
-
-        Move = transform.right * X + transform.forward * Z;
-        Cont.Move(Move * speed * Time.deltaTime);
-
-        if(Input.GetButtonDown("Jump") && isGrounded)
-        {
-            Vel.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
-
-
-        Vel.y += gravity * Time.deltaTime;
-        Cont.Move(Vel * Time.deltaTime);
 
     }
 }
