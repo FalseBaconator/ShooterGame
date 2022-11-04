@@ -41921,6 +41921,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1175793862150205697, guid: 5730106223cc8f64ab35445e20443154, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1175793862150205697, guid: 5730106223cc8f64ab35445e20443154, type: 3}
+      propertyPath: ForceModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8778173323928157978, guid: 5730106223cc8f64ab35445e20443154, type: 3}
       propertyPath: m_Name
       value: Player

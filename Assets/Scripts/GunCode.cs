@@ -17,6 +17,7 @@ public class GunCode : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI ammoText;
     Animator anim;
+    public ParticleSystem sparks;
 
     public GameObject TimerController;
 
@@ -57,6 +58,7 @@ public class GunCode : MonoBehaviour
     {
         if (ammo > 0)
         {
+            sparks.Play();
             anim.SetTrigger("Fire");
             ammo = ammo - 1;
             ammoText.text = "AMMO: " + ammo.ToString();
