@@ -71,6 +71,9 @@ public class GunCode : MonoBehaviour
             {
                 score = score + 1;
                 scoreText.text = "SCORE: " + score.ToString();
+                ParticleSystem chunks = hit.transform.gameObject.GetComponent<MoveTarget>().chunks;
+                chunks.transform.parent = null;
+                chunks.Play();
                 Destroy(hit.transform.gameObject);
             }
 

@@ -7,6 +7,8 @@ public class MoveTarget : MonoBehaviour
 
     public float speed;
 
+    public ParticleSystem chunks;
+
     private void Awake()
     {
         gameObject.transform.parent = null;
@@ -17,6 +19,8 @@ public class MoveTarget : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Wall"))
         {
+            chunks.transform.parent = null;
+            chunks.Play();
             Destroy(gameObject);
         }
     }
