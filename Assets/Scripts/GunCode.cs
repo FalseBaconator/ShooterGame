@@ -49,14 +49,17 @@ public class GunCode : MonoBehaviour
 
     void Reload()
     {
-        anim.SetTrigger("Reload");
-        ammo = fullAmmo;
-        ammoText.text = "AMMO: " + ammo.ToString();
+        if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") && ammo < fullAmmo)
+        {
+            anim.SetTrigger("Reload");
+            ammo = fullAmmo;
+            ammoText.text = "AMMO: " + ammo.ToString();
+        }
     }
 
     void Shoot()
     {
-        if (ammo > 0)
+        if (ammo > 0 && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
             sparks.Play();
             anim.SetTrigger("Fire");
@@ -71,6 +74,9 @@ public class GunCode : MonoBehaviour
                 Destroy(hit.transform.gameObject);
             }
 
+        }else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+        {
+            //empty gun click
         }
         
     }
