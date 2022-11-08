@@ -21,6 +21,7 @@ public class GunCode : MonoBehaviour
 
     public GameObject TimerController;
 
+    public GameObject pauseObject;
 
     private void Start()
     {
@@ -36,11 +37,14 @@ public class GunCode : MonoBehaviour
     {
         if (TimerController.GetComponent<TimeScript>().notYet == false)
         {
-            if (Input.GetButtonDown("Fire1"))
+
+            bool isPaused = Pause.isPaused;
+
+            if (Input.GetButtonDown("Fire1") && isPaused == false)
             {
                 Shoot();
             }
-            if (Input.GetButtonDown("Fire2"))
+            if (Input.GetButtonDown("Fire2") && isPaused == false)
             {
                 Reload();
             }
