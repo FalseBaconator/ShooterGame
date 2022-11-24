@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 0}
   readySetText: {fileID: 0}
+  currentScene: 0
+  loadScene: 4
   maxTime: 60
   readySetMax: 3
   notYet: 1

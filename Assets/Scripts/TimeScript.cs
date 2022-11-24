@@ -8,6 +8,8 @@ public class TimeScript : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI readySetText;
+    public int currentScene;
+    public int loadScene;
 
     public float maxTime;
     float timer;
@@ -27,7 +29,6 @@ public class TimeScript : MonoBehaviour
         }
 
         existCheck = gameObject;
-        DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(gameObject);
         timer = maxTime;
         readySetGo = readySetMax;
@@ -50,7 +51,8 @@ public class TimeScript : MonoBehaviour
                 timer = 0;
                 timerText.text = timer.ToString("00");
                 score = scoreHolder.GetComponent<GunCode>().score;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                currentScene = SceneManager.GetActiveScene().buildIndex;
+                SceneManager.LoadScene(loadScene);
             }
         }else if(readySetGo > 0)
         {

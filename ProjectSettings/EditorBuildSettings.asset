@@ -9,8 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Starting Menu.unity
     guid: 1d88fc15298144e48a6caadb34093446
   - enabled: 1
+    path: Assets/Scenes/Level Select.unity
+    guid: 900d20b3b058f954499f654bccc168d7
+  - enabled: 1
     path: Assets/Scenes/Pillars Level.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Loop Level.unity
+    guid: 9bbfd3a63f17b0d4396ca9c8e2316694
   - enabled: 1
     path: Assets/Scenes/LeaderBoard.unity
     guid: 704a1143e313f4448b2382ff0322d55f

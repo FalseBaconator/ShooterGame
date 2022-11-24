@@ -6,6 +6,8 @@ using TMPro;
 
 public class LeaderboardControl : MonoBehaviour
 {
+    public int PillarLevelInt;
+    public int LoopLevelInt;
 
     int currentScore;
     int heldScore1;
@@ -14,11 +16,11 @@ public class LeaderboardControl : MonoBehaviour
     int heldScore4;
     int heldScore5;
 
-    string holder1;
-    string holder2;
-    string holder3;
-    string holder4;
-    string holder5;
+    string Holder1;
+    string Holder2;
+    string Holder3;
+    string Holder4;
+    string Holder5;
 
     public TextMeshProUGUI currentScoreText;
 
@@ -28,11 +30,11 @@ public class LeaderboardControl : MonoBehaviour
     public TextMeshProUGUI heldScoreText4;
     public TextMeshProUGUI heldScoreText5;
 
-    public TextMeshProUGUI holderText1;
-    public TextMeshProUGUI holderText2;
-    public TextMeshProUGUI holderText3;
-    public TextMeshProUGUI holderText4;
-    public TextMeshProUGUI holderText5;
+    public TextMeshProUGUI HolderText1;
+    public TextMeshProUGUI HolderText2;
+    public TextMeshProUGUI HolderText3;
+    public TextMeshProUGUI HolderText4;
+    public TextMeshProUGUI HolderText5;
 
     TextMeshProUGUI playerNameText;
 
@@ -41,66 +43,84 @@ public class LeaderboardControl : MonoBehaviour
     public GameObject nonScoringPlayerScore;
     public TMP_InputField nameInput;
 
+    int previousScene;
+
 
     private void Awake()
     {
         Cursor.lockState = CursorLockMode.None;
         currentScore = GameObject.FindGameObjectWithTag("ScoreKeeper").GetComponent<TimeScript>().score;
+        previousScene = GameObject.FindGameObjectWithTag("ScoreKeeper").GetComponent<TimeScript>().currentScene;
         currentScoreText.text = currentScore.ToString("00");
 
-        heldScore1 = PlayerPrefs.GetInt("Score1", 0);
-        heldScore2 = PlayerPrefs.GetInt("Score2", 0);
-        heldScore3 = PlayerPrefs.GetInt("Score3", 0);
-        heldScore4 = PlayerPrefs.GetInt("Score4", 0);
-        heldScore5 = PlayerPrefs.GetInt("Score5", 0);
+        if (previousScene == PillarLevelInt)
+        {
+            heldScore1 = PlayerPrefs.GetInt("PillarScore1", 0);
+            heldScore2 = PlayerPrefs.GetInt("PillarScore2", 0);
+            heldScore3 = PlayerPrefs.GetInt("PillarScore3", 0);
+            heldScore4 = PlayerPrefs.GetInt("PillarScore4", 0);
+            heldScore5 = PlayerPrefs.GetInt("PillarScore5", 0);
 
-        holder1 = PlayerPrefs.GetString("Holder1", " ");
-        holder2 = PlayerPrefs.GetString("Holder2", " ");
-        holder3 = PlayerPrefs.GetString("Holder3", " ");
-        holder4 = PlayerPrefs.GetString("Holder4", " ");
-        holder5 = PlayerPrefs.GetString("Holder5", " ");
+            Holder1 = PlayerPrefs.GetString("PillarHolder1", " ");
+            Holder2 = PlayerPrefs.GetString("PillarHolder2", " ");
+            Holder3 = PlayerPrefs.GetString("PillarHolder3", " ");
+            Holder4 = PlayerPrefs.GetString("PillarHolder4", " ");
+            Holder5 = PlayerPrefs.GetString("PillarHolder5", " ");
+        }else if (previousScene == LoopLevelInt)
+        {
+            heldScore1 = PlayerPrefs.GetInt("LoopScore1", 0);
+            heldScore2 = PlayerPrefs.GetInt("LoopScore2", 0);
+            heldScore3 = PlayerPrefs.GetInt("LoopScore3", 0);
+            heldScore4 = PlayerPrefs.GetInt("LoopScore4", 0);
+            heldScore5 = PlayerPrefs.GetInt("LoopScore5", 0);
 
+            Holder1 = PlayerPrefs.GetString("LoopHolder1", " ");
+            Holder2 = PlayerPrefs.GetString("LoopHolder2", " ");
+            Holder3 = PlayerPrefs.GetString("LoopHolder3", " ");
+            Holder4 = PlayerPrefs.GetString("LoopHolder4", " ");
+            Holder5 = PlayerPrefs.GetString("LoopHolder5", " ");
+        }
         playerNameText = null;
 
         if(currentScore >= heldScore5)
         {
             heldScore5 = currentScore;
-            playerNameText = holderText5;
+            playerNameText = HolderText5;
         }
         if (currentScore >= heldScore4)
         {
             heldScore5 = heldScore4;
-            holder5 = holder4;
+            Holder5 = Holder4;
             heldScore4 = currentScore;
-            playerNameText = holderText4;
+            playerNameText = HolderText4;
         }
         if (currentScore >= heldScore3)
         {
             heldScore4 = heldScore3;
-            holder4 = holder3;
+            Holder4 = Holder3;
             heldScore3 = currentScore;
-            playerNameText = holderText3;
+            playerNameText = HolderText3;
         }
         if (currentScore >= heldScore2)
         {
             heldScore3 = heldScore2;
-            holder3 = holder2;
+            Holder3 = Holder2;
             heldScore2 = currentScore;
-            playerNameText = holderText2;
+            playerNameText = HolderText2;
         }
         if (currentScore >= heldScore1)
         {
             heldScore2 = heldScore1;
-            holder2 = holder1;
+            Holder2 = Holder1;
             heldScore1 = currentScore;
-            playerNameText = holderText1;
+            playerNameText = HolderText1;
         }
 
-        holderText1.text = holder1;
-        holderText2.text = holder2;
-        holderText3.text = holder3;
-        holderText4.text = holder4;
-        holderText5.text = holder5;
+        HolderText1.text = Holder1;
+        HolderText2.text = Holder2;
+        HolderText3.text = Holder3;
+        HolderText4.text = Holder4;
+        HolderText5.text = Holder5;
 
         heldScoreText1.text = heldScore1.ToString();
         heldScoreText2.text = heldScore2.ToString();
@@ -138,18 +158,33 @@ public class LeaderboardControl : MonoBehaviour
     {
         playerNameText.text = nameInput.text;
 
-        PlayerPrefs.SetInt("Score1", heldScore1);
-        PlayerPrefs.SetInt("Score2", heldScore2);
-        PlayerPrefs.SetInt("Score3", heldScore3);
-        PlayerPrefs.SetInt("Score4", heldScore4);
-        PlayerPrefs.SetInt("Score5", heldScore5);
+        if (previousScene == PillarLevelInt)
+        {
+            PlayerPrefs.SetInt("PillarScore1", heldScore1);
+            PlayerPrefs.SetInt("PillarScore2", heldScore2);
+            PlayerPrefs.SetInt("PillarScore3", heldScore3);
+            PlayerPrefs.SetInt("PillarScore4", heldScore4);
+            PlayerPrefs.SetInt("PillarScore5", heldScore5);
 
-        PlayerPrefs.SetString("Holder1", holderText1.text);
-        PlayerPrefs.SetString("Holder2", holderText2.text);
-        PlayerPrefs.SetString("Holder3", holderText3.text);
-        PlayerPrefs.SetString("Holder4", holderText4.text);
-        PlayerPrefs.SetString("Holder5", holderText5.text);
+            PlayerPrefs.SetString("PillarHolder1", HolderText1.text);
+            PlayerPrefs.SetString("PillarHolder2", HolderText2.text);
+            PlayerPrefs.SetString("PillarHolder3", HolderText3.text);
+            PlayerPrefs.SetString("PillarHolder4", HolderText4.text);
+            PlayerPrefs.SetString("PillarHolder5", HolderText5.text);
+        }else if(previousScene == LoopLevelInt)
+        {
+            PlayerPrefs.SetInt("LoopScore1", heldScore1);
+            PlayerPrefs.SetInt("LoopScore2", heldScore2);
+            PlayerPrefs.SetInt("LoopScore3", heldScore3);
+            PlayerPrefs.SetInt("LoopScore4", heldScore4);
+            PlayerPrefs.SetInt("LoopScore5", heldScore5);
 
+            PlayerPrefs.SetString("LoopHolder1", HolderText1.text);
+            PlayerPrefs.SetString("LoopHolder2", HolderText2.text);
+            PlayerPrefs.SetString("LoopHolder3", HolderText3.text);
+            PlayerPrefs.SetString("LoopHolder4", HolderText4.text);
+            PlayerPrefs.SetString("LoopHolder5", HolderText5.text);
+        }
         menuButton.SetActive(true);
         nonScoringPlayerScore.SetActive(true);
         nameInput.gameObject.SetActive(false);
@@ -157,35 +192,62 @@ public class LeaderboardControl : MonoBehaviour
 
     public void Reset()
     {
-        PlayerPrefs.DeleteKey("Score1");
-        PlayerPrefs.DeleteKey("Score2");
-        PlayerPrefs.DeleteKey("Score3");
-        PlayerPrefs.DeleteKey("Score4");
-        PlayerPrefs.DeleteKey("Score5");
+        if (previousScene == PillarLevelInt)
+        {
+            PlayerPrefs.DeleteKey("PillarScore1");
+            PlayerPrefs.DeleteKey("PillarScore2");
+            PlayerPrefs.DeleteKey("PillarScore3");
+            PlayerPrefs.DeleteKey("PillarScore4");
+            PlayerPrefs.DeleteKey("PillarScore5");
 
-        PlayerPrefs.DeleteKey("Holder1");
-        PlayerPrefs.DeleteKey("Holder2");
-        PlayerPrefs.DeleteKey("Holder3");
-        PlayerPrefs.DeleteKey("Holder4");
-        PlayerPrefs.DeleteKey("Holder5");
+            PlayerPrefs.DeleteKey("PillarHolder1");
+            PlayerPrefs.DeleteKey("PillarHolder2");
+            PlayerPrefs.DeleteKey("PillarHolder3");
+            PlayerPrefs.DeleteKey("PillarHolder4");
+            PlayerPrefs.DeleteKey("PillarHolder5");
 
-        heldScore1 = PlayerPrefs.GetInt("Score1", 0);
-        heldScore2 = PlayerPrefs.GetInt("Score2", 0);
-        heldScore3 = PlayerPrefs.GetInt("Score3", 0);
-        heldScore4 = PlayerPrefs.GetInt("Score4", 0);
-        heldScore5 = PlayerPrefs.GetInt("Score5", 0);
+            heldScore1 = PlayerPrefs.GetInt("PillarScore1", 0);
+            heldScore2 = PlayerPrefs.GetInt("PillarScore2", 0);
+            heldScore3 = PlayerPrefs.GetInt("PillarScore3", 0);
+            heldScore4 = PlayerPrefs.GetInt("PillarScore4", 0);
+            heldScore5 = PlayerPrefs.GetInt("PillarScore5", 0);
 
-        holder1 = PlayerPrefs.GetString("Holder1", " ");
-        holder2 = PlayerPrefs.GetString("Holder2", " ");
-        holder3 = PlayerPrefs.GetString("Holder3", " ");
-        holder4 = PlayerPrefs.GetString("Holder4", " ");
-        holder5 = PlayerPrefs.GetString("Holder5", " ");
+            Holder1 = PlayerPrefs.GetString("PillarHolder1", " ");
+            Holder2 = PlayerPrefs.GetString("PillarHolder2", " ");
+            Holder3 = PlayerPrefs.GetString("PillarHolder3", " ");
+            Holder4 = PlayerPrefs.GetString("PillarHolder4", " ");
+            Holder5 = PlayerPrefs.GetString("PillarHolder5", " ");
+        }else if (previousScene == LoopLevelInt)
+        {
+            PlayerPrefs.DeleteKey("LoopScore1");
+            PlayerPrefs.DeleteKey("LoopScore2");
+            PlayerPrefs.DeleteKey("LoopScore3");
+            PlayerPrefs.DeleteKey("LoopScore4");
+            PlayerPrefs.DeleteKey("LoopScore5");
 
-        holderText1.text = holder1;
-        holderText2.text = holder2;
-        holderText3.text = holder3;
-        holderText4.text = holder4;
-        holderText5.text = holder5;
+            PlayerPrefs.DeleteKey("LoopHolder1");
+            PlayerPrefs.DeleteKey("LoopHolder2");
+            PlayerPrefs.DeleteKey("LoopHolder3");
+            PlayerPrefs.DeleteKey("LoopHolder4");
+            PlayerPrefs.DeleteKey("LoopHolder5");
+
+            heldScore1 = PlayerPrefs.GetInt("LoopScore1", 0);
+            heldScore2 = PlayerPrefs.GetInt("LoopScore2", 0);
+            heldScore3 = PlayerPrefs.GetInt("LoopScore3", 0);
+            heldScore4 = PlayerPrefs.GetInt("LoopScore4", 0);
+            heldScore5 = PlayerPrefs.GetInt("LoopScore5", 0);
+
+            Holder1 = PlayerPrefs.GetString("LoopHolder1", " ");
+            Holder2 = PlayerPrefs.GetString("LoopHolder2", " ");
+            Holder3 = PlayerPrefs.GetString("LoopHolder3", " ");
+            Holder4 = PlayerPrefs.GetString("LoopHolder4", " ");
+            Holder5 = PlayerPrefs.GetString("LoopHolder5", " ");
+        }
+        HolderText1.text = Holder1;
+        HolderText2.text = Holder2;
+        HolderText3.text = Holder3;
+        HolderText4.text = Holder4;
+        HolderText5.text = Holder5;
 
         heldScoreText1.text = heldScore1.ToString();
         heldScoreText2.text = heldScore2.ToString();
