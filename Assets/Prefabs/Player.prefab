@@ -5404,7 +5404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   gravity: -18
-  jumpHeight: 2
+  jumpHeight: 4
   Vel: {x: 0, y: 0, z: 0}
   Cont: {fileID: 8778173323928158053}
   groundCheck: {fileID: 8778173324571059605}
@@ -5543,7 +5543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3275dc137b67e124c847136cbc3adacb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSense: 1000
+  mouseSense: 250
   mouseSenseGlobal: 0
   playerBody: {fileID: 8778173323928158052}
   OptionSaverTag: OptionSaver
@@ -5808,6 +5808,7 @@ MonoBehaviour:
   ammoText: {fileID: 0}
   sparks: {fileID: 1175793862150205697}
   TimerController: {fileID: 0}
+  pauseObject: {fileID: 0}
 --- !u!95 &746280759
 Animator:
   serializedVersion: 4
