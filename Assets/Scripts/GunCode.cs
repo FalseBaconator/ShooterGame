@@ -48,6 +48,10 @@ public class GunCode : MonoBehaviour
             {
                 Reload();
             }
+            if(ammo == 0 && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+            {
+                Reload();
+            }
         }
     }
 
