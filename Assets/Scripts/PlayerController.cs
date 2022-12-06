@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
             Z = Input.GetAxis("Vertical");
 
             Move = transform.right * X + transform.forward * Z;
-            Cont.Move(Move * speed * Time.deltaTime);
+            Cont.Move(Move.normalized * speed * Time.deltaTime);
 
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
