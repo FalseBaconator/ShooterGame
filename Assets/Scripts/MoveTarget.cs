@@ -9,6 +9,7 @@ public class MoveTarget : MonoBehaviour
 
     public ParticleSystem chunks;
 
+
     private void Awake()
     {
         gameObject.transform.parent = null;

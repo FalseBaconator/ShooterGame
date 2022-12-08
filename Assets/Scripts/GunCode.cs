@@ -12,6 +12,7 @@ public class GunCode : MonoBehaviour
 
     public Camera cam;
     public LayerMask targetMask;
+    public string targetTag;
 
     public int score;
     public TextMeshProUGUI scoreText;
@@ -22,6 +23,11 @@ public class GunCode : MonoBehaviour
     public GameObject TimerController;
 
     public GameObject pauseObject;
+
+    public AudioSource audSource;
+    public AudioSource reloadSource;
+    public AudioClip shootClip;
+    public AudioClip explosion;
 
     private void Start()
     {
@@ -60,6 +66,7 @@ public class GunCode : MonoBehaviour
         if(anim.GetCurrentAnimatorStateInfo(0).IsName("Idle") && ammo < fullAmmo)
         {
             anim.SetTrigger("Reload");
+            reloadSource.PlayDelayed(0.05f);
             ammo = fullAmmo;
             ammoText.text = "AMMO: " + ammo.ToString();
         }
@@ -69,25 +76,32 @@ public class GunCode : MonoBehaviour
     {
         if (ammo > 0 && anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
         {
+            audSource.clip = shootClip;
             sparks.Play();
             anim.SetTrigger("Fire");
+            audSource.Play();
             ammo = ammo - 1;
             ammoText.text = "AMMO: " + ammo.ToString();
 
-            RaycastHit hit;
-            if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range, targetMask))
+            RaycastHit[] hits = Physics.RaycastAll(cam.transform.position, cam.transform.forward, targetMask);
+            if (hits.Length != 0)
             {
-                score = score + 1;
+                foreach (RaycastHit hit in hits)
+                {
+                    if (hit.collider.gameObject.CompareTag(targetTag))
+                    {
+                        score = score + 1;
+                        audSource.clip = explosion;
+                        audSource.Play();
+                        ParticleSystem chunks = hit.transform.gameObject.GetComponent<MoveTarget>().chunks;
+                        chunks.transform.parent = null;
+                        chunks.Play();
+                        Destroy(hit.transform.gameObject);
+                    }
+                }
                 scoreText.text = "SCORE: " + score.ToString();
-                ParticleSystem chunks = hit.transform.gameObject.GetComponent<MoveTarget>().chunks;
-                chunks.transform.parent = null;
-                chunks.Play();
-                Destroy(hit.transform.gameObject);
             }
 
-        }else if (anim.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
-        {
-            //empty gun click
         }
         
     }

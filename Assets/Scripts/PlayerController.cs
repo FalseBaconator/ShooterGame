@@ -40,11 +40,11 @@ public class PlayerController : MonoBehaviour
                 Vel.y = -2f;
             }
 
-            X = Input.GetAxis("Horizontal");
-            Z = Input.GetAxis("Vertical");
+            X = Input.GetAxisRaw("Horizontal");
+            Z = Input.GetAxisRaw("Vertical");
 
-            Move = transform.right * X + transform.forward * Z;
-            Cont.Move(Move.normalized * speed * Time.deltaTime);
+            Move = (transform.right * X + transform.forward * Z).normalized;
+            Cont.Move(Move * speed * Time.deltaTime);
 
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
