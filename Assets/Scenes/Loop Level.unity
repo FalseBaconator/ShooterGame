@@ -5471,6 +5471,7 @@ MonoBehaviour:
   - {fileID: 877300347}
   targetStationary: {fileID: 9034675581692295715, guid: ea3cd43dce5dd384d828e6461e0bd904, type: 3}
   targetTag: Target
+  targets: []
 --- !u!1 &1968912093
 GameObject:
   m_ObjectHideFlags: 0

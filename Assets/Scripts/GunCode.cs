@@ -19,6 +19,8 @@ public class GunCode : MonoBehaviour
     public TextMeshProUGUI ammoText;
     Animator anim;
     public ParticleSystem sparks;
+    public ParticleSystem bullet;
+    public GameObject hitEffect;
 
     public GameObject TimerController;
 
@@ -78,6 +80,7 @@ public class GunCode : MonoBehaviour
         {
             audSource.clip = shootClip;
             sparks.Play();
+            bullet.Play();
             anim.SetTrigger("Fire");
             audSource.Play();
             ammo = ammo - 1;
@@ -98,6 +101,8 @@ public class GunCode : MonoBehaviour
                         chunks.Play();
                         Destroy(hit.transform.gameObject);
                     }
+                    GameObject effect = Instantiate(hitEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                    //GameObject.Destroy(effect);
                 }
                 scoreText.text = "SCORE: " + score.ToString();
             }
